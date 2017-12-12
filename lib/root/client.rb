@@ -8,8 +8,9 @@ class Root::Client
     @env = env
   end
 
-  def get(entity, id=nil)
-    response = HTTParty.get("#{api_root}/#{api_version}/#{entity}/#{id}",
+  def get(entity, query=nil)
+    response = HTTParty.get("#{api_root}/#{api_version}/#{entity}",
+      query: query || {},
       basic_auth: auth)
 
     parse_response(response)
