@@ -33,6 +33,15 @@ class Root::Client
     parse_response(response)
   end
 
+  def patch(entity, data)
+    response = HTTParty.patch("#{api_root}/#{api_version}/#{entity}",
+      body:       data.to_json,
+      basic_auth: auth,
+      headers:    {'Content-Type' => 'application/json', 'Accept' => 'application/json'})
+
+    parse_response(response)
+  end
+
   private
 
   def parse_response(response)
@@ -45,6 +54,8 @@ class Root::Client
       raise Root::InputError.new(parsed["message"])
     when 401, 403
       raise Root::AuthenticationError.new(parsed["message"])
+    else
+      raise parsed["message"]
     end
   end
 
