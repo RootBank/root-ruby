@@ -24,6 +24,15 @@ class Root::Client
     parse_response(response)
   end
 
+  def put(entity, data)
+    response = HTTParty.put("#{api_root}/#{api_version}/#{entity}",
+      body:       data.to_json,
+      basic_auth: auth,
+      headers:    {'Content-Type' => 'application/json', 'Accept' => 'application/json'})
+
+    parse_response(response)
+  end
+
   private
 
   def parse_response(response)
