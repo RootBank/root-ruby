@@ -18,5 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
+See the [wiki](https://github.com/RootBank/root-ruby/wiki).
+
 
 ## Development
