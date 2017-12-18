@@ -11,6 +11,7 @@ class Root::Client
   def get(entity, query=nil)
     response = HTTParty.get("#{api_root}/#{api_version}/#{entity}",
       query: query || {},
+      debug_output: $stdout,
       basic_auth: auth)
 
     parse_response(response)
@@ -20,6 +21,7 @@ class Root::Client
     response = HTTParty.post("#{api_root}/#{api_version}/#{entity}",
       body:       data.to_json,
       basic_auth: auth,
+      debug_output: $stdout,
       headers:    {'Content-Type' => 'application/json', 'Accept' => 'application/json'})
 
     parse_response(response)
