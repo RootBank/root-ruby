@@ -1,4 +1,5 @@
 # Root
+> ⚠️ *This repository is not yet maintained or supported by the Root team and has been created by the community. It was open-sourced prematurely for use at the OfferZen Make events.*
 
 ## Installation
 
