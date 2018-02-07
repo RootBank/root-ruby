@@ -52,11 +52,11 @@ class Root::Client
     when 200
       parsed
     when 400
-      raise Root::InputError.new(parsed["message"])
+      raise Root::InputError.new(error_message(parsed))
     when 401, 403
-      raise Root::AuthenticationError.new(parsed["message"])
+      raise Root::AuthenticationError.new(error_message(parsed))
     else
-      raise parsed["message"]
+      raise error_message(parsed)
     end
   end
 
@@ -70,6 +70,10 @@ class Root::Client
 
   def api_version
     "v1"
+  end
+
+  def error_message(response_body)
+    response_body["error"] || response_body["message"]
   end
 
 end
